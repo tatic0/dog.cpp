@@ -37,41 +37,38 @@ int main (int argc, const char* argv[])
     {
     cout << "Usage: " << argv[0] << " string destination \n\n";
     cout << "all extra arguments will be ignored\n";
-    //void exit (int exitcode);    
     exitcode=4;
     exit(exitcode);
     }
   else if (argc > 2)
     {
-    std::string argv1 = argv[1]; 
-    std::string argv2 = argv[2];
-    //int content = atoi(argv[1]);
-    string content = argv[1];     //fuck it works!!!
-    //string filename = argv[2];
-    /*
-    two next vars are useless, i'll keep them as a reminder by now.
+     /*
+    next vars are useless, i'll keep them as a reminder by now.
     */
-    char filename[] = "./text.text";
-    char filecontent[] = "new line added\n";
+    //std::string argv1 = argv[1]; 
+    //std::string argv2 = argv[2];
+    //char filename[] = "./text.text";
+    //char filecontent[] = "new line added\n";
     
+    string content = argv[1];
+
     ifstream inFile; 
     inFile.open(argv[2]);
 
     if (inFile.fail()) 
       { 
-      cout << "Could Not Open file: " << filename << "\n"; 
-      cout << "Creating new file: " << filename << "\n";
+      cout << "file not present on filesystem, creating new file: " << argv[2] << "\n";
       ofstream outFile;
       outFile.open(argv[2], ios::app);
-      outFile << "first line \n" << filecontent;
+      outFile << content << "\n";
       outFile.close();
       } 
 
     else 
       { 
-      cout << "File: " << filename << " exists and can be opened.\n"; 
+      cout << "File: " << argv[2] << " exists and can be opened.\n"; 
       ofstream outFile;
-      outFile.open(argv[2], ios::app);
+      outFile.open(argv[2], ios::trunc);
 /*
 add test (if int, or so) if necessary
 */
